@@ -25,14 +25,22 @@ Will be fine
 ## Creating the structure of the project.
 Pretty simple, use this Maven command:
 
-    $ mvn archetype:generate-DgroupId=com.dwbook.phonebook-DartifactId=dwbook-phonebook-DarchetypeArtifactId=maven-archetype-quickstart-DinteractiveMode=false
+    $ mvn archetype:generate -DgroupId=com.dwbook.phonebook -DartifactId=dwbook-phonebook -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
    
 Where:
   - groupID:      the package structure of the project
   - artifactId:   the name of the application and the name of the directory
 
 Remember, the artifactId is also the name of the project's directory. With GitHub, the 
-name of the repo is also the name of the project's directory. So, the artifactId
-must match the name of the remote repo.
+name of the repo is also the name of the project's directory. ( So, the artifactId
+must match the name of the remote repo. -- not sure about this )
 
- 
+## Running the application
+    $ java -jar target/dwbook-phonebook-1.0-SNAPSHOT.jar server
+the server argument to the command. 
+
+In public static void main, we called the public void run method, 
+passing command-line arguments to it. Dropwizard has only one command 
+preconfigured (although we're able to configure additional commands), 
+the server command, which starts the embedded HTTP Server (Jetty) 
+to run our service. 
