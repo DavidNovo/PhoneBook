@@ -31,5 +31,8 @@ Where:
   - groupID:      the package structure of the project
   - artifactId:   the name of the application and the name of the directory
 
-Remember, the artifactId is also the name of the project's directory. With GitHub, the name of the repo is also the name of the project's directory.
+Remember, the artifactId is also the name of the project's directory. With GitHub, the 
+name of the repo is also the name of the project's directory. So, the artifactId
+must match the name of the remote repo.
+
  
