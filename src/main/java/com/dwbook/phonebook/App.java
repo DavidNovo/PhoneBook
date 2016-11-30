@@ -11,7 +11,7 @@ import io.dropwizard.setup.Environment;
  * Hello world!
  *
  */
-public class App extends Application<Configuration> {
+public class App extends Application<PhonebookConfiguration> {
     private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
     public static void main( String[] args ) throws Exception {
@@ -19,13 +19,19 @@ public class App extends Application<Configuration> {
     }
 
     @Override
-    public void initialize(Bootstrap<Configuration> b) {
+    public void initialize(Bootstrap<PhonebookConfiguration> b) {
 
     }
 
     @Override
-    public void run(Configuration configuration, Environment environment) throws Exception {
+    public void run(PhonebookConfiguration phonebookConfig , Environment environment) throws Exception {
         LOGGER.info("Method App#run() called");
+
+        // this message is sent to the console
         System.out.println("Helloworld, by Dropwizard");
+
+        for (int i=0; i < phonebookConfig.getMessageRepetitions(); i++) {
+            System.out.println(phonebookConfig.getMessage());
+        }
     }
 }
