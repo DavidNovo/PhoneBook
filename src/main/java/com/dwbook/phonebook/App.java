@@ -1,5 +1,6 @@
 package com.dwbook.phonebook;
 
+import com.dwbook.phonebook.resources.ContactResource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import io.dropwizard.Application;
@@ -18,11 +19,24 @@ public class App extends Application<PhonebookConfiguration> {
         new App().run(args);
     }
 
+    /**
+     * This method parses the yaml file and creates a POJO.
+     * The POJO represents configurations for the application.
+     * @param b
+     */
     @Override
     public void initialize(Bootstrap<PhonebookConfiguration> b) {
 
     }
 
+    /**
+     * This defines the runtime or execution environment. This method defines which
+     * resources and configurations are available when the application runs.
+     *
+     * @param phonebookConfig
+     * @param environment
+     * @throws Exception
+     */
     @Override
     public void run(PhonebookConfiguration phonebookConfig , Environment environment) throws Exception {
         LOGGER.info("Method App#run() called");
@@ -33,5 +47,9 @@ public class App extends Application<PhonebookConfiguration> {
         for (int i=0; i < phonebookConfig.getMessageRepetitions(); i++) {
             System.out.println(phonebookConfig.getMessage());
         }
+
+        // add resource to the environment
+        // in this case I am using a jersey instannce
+        environment.jersey().register(new ContactResource());
     }
 }
