@@ -1,0 +1,2 @@
+message: This is a message defined in the configuration file config.yaml. Same directory as pom.xml
+messageRepetitions: 3

@@ -44,3 +44,12 @@ passing command-line arguments to it. Dropwizard has only one command
 preconfigured (although we're able to configure additional commands), 
 the server command, which starts the embedded HTTP Server (Jetty) 
 to run our service. 
+
+## Running the app with a config file
+Here is the command to run the app with a config file.  Execute command in the root of the project:
+
+    java -jar target/dwbook-phonebook-1.0-SNAPSHOT.jar server config.yaml
+
+When a configuration file is passed as a command line argument, Dropwizard parses it and creates an instance of the configuration class.
+
+
