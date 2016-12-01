@@ -38,6 +38,7 @@ public class ContactResource {
         // retrieve information about the contact with theprovided id
         // ...
 
+        // the happy path HTTP response codee is 200
         // build a response using JSON
         return Response
                 .ok("{contact_id: " + id + ", name: \"Dummy Name\",phone: \"+0123456789\" }")
@@ -79,7 +80,7 @@ public class ContactResource {
         // delete the contact with the provided id
         // ...
 
-        // the HTTP response code will be 204 No Content
+        // happy path, the HTTP response code will be 204 No Content
         return Response
                 .noContent()
                 .build();
@@ -102,6 +103,10 @@ public class ContactResource {
             @FormParam("phone") String phone) {
         // update the contact with the provided ID
         // ...
+
+
+        // the happy path is HTTP 200
+        // Response.status(Status.MOVED_PERMANENTLY);
         return Response
                 .ok("{contact_id: "+ id +", name: \""+ name +"\",phone: \""+ phone +"\" }")
                 .build();
