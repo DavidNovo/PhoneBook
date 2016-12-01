@@ -1,10 +1,14 @@
 package com.dwbook.phonebook.api;
 
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Created by davidnovogrodsky_wrk on 11/30/16.
+ * <p>
+ * This class is a called a representation.  A representation represents data received
+ * in a request or sent in a response.
+ * <p>
+ * It is a POJO that can be serialized/deserialize using the Jackson framework
  */
 public class Contact {
 
@@ -25,24 +29,24 @@ public class Contact {
         this.phone = phone;
     }
 
-    // now to make this object be serialized/deserialize
+    // now to make this object serialized/deserialize
     @JsonProperty
-    public int getId(){
+    public int getId() {
         return this.id;
     }
 
     @JsonProperty
-    public String getFirstName(){
+    public String getFirstName() {
         return this.firstName;
     }
 
     @JsonProperty
-    public String getLastName(){
+    public String getLastName() {
         return this.lastName;
     }
 
     @JsonProperty
-    public String phone() {
+    public String getPhone() {
         return this.phone;
     }
 

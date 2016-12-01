@@ -1,5 +1,7 @@
 package com.dwbook.phonebook.resources;
 
+import com.dwbook.phonebook.api.Contact;
+
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -11,12 +13,12 @@ import javax.ws.rs.core.Response;
  * <p>
  * A resource class is responsible for handling HTTP requests and
  * generating JSON responses.
- *
+ * <p>
  * This is also where I define the URIs I want to expose.
- *
+ * <p>
  * The @Produces defines the type of contact the URIs produce.
  * the @Path define a URI template.
- *
+ * <p>
  * Jersey will intercept every incoming HTTP
  * request and try to match it with the defined URI template in order
  * to find which resource class method to invoke.
@@ -28,39 +30,37 @@ public class ContactResource {
     /**
      * @param id
      * @return Response
-     *
+     * <p>
      * This method returns a contact with the given id.
      * This is mapped to HTTP GET, path /{id}
      */
     @GET
     @Path("/{id}")
     public Response getContact(@PathParam("id") int id) {
-        // retrieve information about the contact with theprovided id
+        // retrieve information about the contact with the provided id
         // ...
 
         // the happy path HTTP response codee is 200
         // build a response using JSON
         return Response
-                .ok("{contact_id: " + id + ", name: \"Dummy Name\",phone: \"+0123456789\" }")
+                .ok(new Contact(id, "John", "Doe", "1-220-345-6677"))
                 .build();
     }
 
     /**
-     *
-     * This method uses the send name and phone to create a new contact.
-     *
+     * This method uses a representation to create a new contact.
+     * <p>
      * The happy path of this method will return a 201 Created HTTP response
      * code alone with the URI of the newly created resource.
+     * <p>
+     * Since a representation is a parameter, Jersey will deserialize the
+     * request body into  a Contact object
      *
-     * @param name
-     * @param phone
+     * @param contact
      * @return
-     *
      */
     @POST
-    public Response createContact(
-            @FormParam("name") String name,
-            @FormParam("phone") String phone) {
+    public Response createContact(Contact contact) {
         // store the new contact
         // ...
         return Response
@@ -70,6 +70,8 @@ public class ContactResource {
 
     /**
      * This method deletes a contact with the supplied id.
+     * <p>
+     * This method serves a representation through this resource class.
      *
      * @param id
      * @return
@@ -89,18 +91,20 @@ public class ContactResource {
     /**
      * This method updates a contact with the supplied ID.
      * The new values are also supplied.
+     * <p>
+     * This method creates a representation through this resource class.
+     * <p>
+     * Since a representation is a parameter, Jersey will deserialize the
+     * request body into  a Contact object
      *
      * @param id
-     * @param name
-     * @param phone
+     * @param contact
      * @return
      */
     @PUT
     @Path("/{id}")
     public Response updateContact(
-            @PathParam("id") int id,
-            @FormParam("name") String name,
-            @FormParam("phone") String phone) {
+            @PathParam("id") int id, Contact contact) {
         // update the contact with the provided ID
         // ...
 
@@ -108,7 +112,7 @@ public class ContactResource {
         // the happy path is HTTP 200
         // Response.status(Status.MOVED_PERMANENTLY);
         return Response
-                .ok("{contact_id: "+ id +", name: \""+ name +"\",phone: \""+ phone +"\" }")
+                .ok(new Contact(id, contact.getFirstName(), contact.getLastName(), contact.getPhone()))
                 .build();
     }
 }
