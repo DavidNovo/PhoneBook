@@ -53,3 +53,5 @@ Here is the command to run the app with a config file.  Execute command in the r
 When a configuration file is passed as a command line argument, Dropwizard parses it and creates an instance of the configuration class.
 
 
+## Database
+$ docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=password -d mysql:tag
