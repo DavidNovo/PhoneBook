@@ -41,7 +41,7 @@ the server argument to the command.
 
 In public static void main, we called the public void run method, 
 passing command-line arguments to it. Dropwizard has only one command 
-preconfigured (although we're able to configure additional commands), 
+prefigured (although we're able to configure additional commands), 
 the server command, which starts the embedded HTTP Server (Jetty) 
 to run our service. 
 
@@ -54,4 +54,4 @@ When a configuration file is passed as a command line argument, Dropwizard parse
 
 
 ## Database
-$ docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=password -d mysql:tag
+~ docker run --name some-mysql --net=host -e MYSQL_ROOT_PASSWORD=password -d davidnovo/mysql:version2

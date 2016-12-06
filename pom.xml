@@ -20,7 +20,8 @@ in transitive dependencies or in dependencies where no version has been specifie
         <dependencies>
             <dependency>
                 <!-- Bill of materials to make sure a consistent
-                set of versions is used for Dropwizard modules.-->
+                set of versions is used for Dropwizard modules.
+                This is where my version number is coming from.-->
                 <groupId>io.dropwizard</groupId>
                 <artifactId>dropwizard-bom</artifactId>
                 <version>${dropwizard.version}</version>
@@ -37,6 +38,7 @@ in transitive dependencies or in dependencies where no version has been specifie
             <url>http://oss.sonatype.org/content/repositories/snapshots</url>
         </repository>
     </repositories>
+
     <dependencies>
         <dependency>
             <groupId>io.dropwizard</groupId>
@@ -48,6 +50,29 @@ in transitive dependencies or in dependencies where no version has been specifie
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>io.dropwizard</groupId>
+            <artifactId>dropwizard-db</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jdbi</groupId>
+            <artifactId>jdbi</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.dropwizard</groupId>
+            <artifactId>dropwizard-jdbi</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.dropwizard.metrics</groupId>
+            <artifactId>metrics-jdbi</artifactId>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>6.0.5</version>
+        </dependency>
+
     </dependencies>
 
     <build>

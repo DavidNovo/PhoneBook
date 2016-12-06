@@ -1,2 +1,7 @@
 message: This is a message defined in the configuration file config.yaml. Same directory as pom.xml
 messageRepetitions: 3
+database:
+  driverClass: com.mysql.jdbc.Driver
+  user: phonebookuser
+  password: phonebookpassword
+  url: jdbc:mysql://0.0.0.0:3306/phonebook

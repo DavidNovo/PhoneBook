@@ -1,6 +1,8 @@
 package com.dwbook.phonebook.resources;
 
 import com.dwbook.phonebook.api.Contact;
+import com.dwbook.phonebook.db.ContactDAO;
+import org.skife.jdbi.v2.DBI;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -26,6 +28,12 @@ import javax.ws.rs.core.Response;
 @Path("/contact")
 @Produces(MediaType.APPLICATION_JSON)
 public class ContactResource {
+
+    private final ContactDAO contactDao;
+
+    public ContactResource(DBI jdbi) {
+        contactDao = jdbi.onDemand(ContactDAO.class);
+    }
 
     /**
      * @param id

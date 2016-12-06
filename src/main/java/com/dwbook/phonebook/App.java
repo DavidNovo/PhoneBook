@@ -1,10 +1,12 @@
 package com.dwbook.phonebook;
 
+
 import com.dwbook.phonebook.resources.ContactResource;
+import io.dropwizard.jdbi.DBIFactory;
+import org.skife.jdbi.v2.DBI;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import io.dropwizard.Application;
-import io.dropwizard.Configuration;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 
@@ -48,8 +50,16 @@ public class App extends Application<PhonebookConfiguration> {
             System.out.println(phonebookConfig.getMessage());
         }
 
+
+
+        // now add database connection
+        final DBIFactory factory = new DBIFactory();
+        final DBI jdbi  =   factory.build(environment, phonebookConfig.getDataSourceFactory(), "mysql");
+        // add resource to environment
         // add resource to the environment
         // in this case I am using a jersey instannce
-        environment.jersey().register(new ContactResource());
+        environment.jersey().register(new ContactResource(jdbi));
+
+
     }
 }
