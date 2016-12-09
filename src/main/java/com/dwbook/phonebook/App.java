@@ -45,17 +45,17 @@ public class App extends Application<PhonebookConfiguration> {
 
         // this message is sent to the console
         System.out.println("Helloworld, by Dropwizard");
-
         for (int i=0; i < phonebookConfig.getMessageRepetitions(); i++) {
             System.out.println(phonebookConfig.getMessage());
         }
 
 
 
-        // now add database connection
+        // now declare database connection factory
         final DBIFactory factory = new DBIFactory();
+        // instantiate DBI factory
         final DBI jdbi  =   factory.build(environment, phonebookConfig.getDataSourceFactory(), "mysql");
-        // add resource to environment
+
         // add resource to the environment
         // in this case I am using a jersey instannce
         environment.jersey().register(new ContactResource(jdbi));

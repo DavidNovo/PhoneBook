@@ -55,3 +55,24 @@ When a configuration file is passed as a command line argument, Dropwizard parse
 
 ## Database
 ~ docker run --name some-mysql --net=host -e MYSQL_ROOT_PASSWORD=password -d davidnovo/mysql:version2
+
+## Integration Testing with CURL
+### CRUD operations
+Sample use of curl command:
+
+    ➜  ~ curl --verbose --header "Content-Type: application/json" -X POST -d '{"firstName": "FOO", "lastName":"BAR", "phone":"987654321"}' http://localhost:8080/contact
+    *   Trying ::1...
+    * Connected to localhost (::1) port 8080 (#0)
+    > POST /contact HTTP/1.1
+    > Host: localhost:8080
+    > User-Agent: curl/7.43.0
+    > Accept: */*
+    > Content-Type: application/json
+    > Content-Length: 59
+    >
+    * upload completely sent off: 59 out of 59 bytes
+    < HTTP/1.1 201 Created
+    < Date: Fri, 09 Dec 2016 05:18:37 GMT
+    < Location: http://localhost:8080/3
+    < Content-Length: 0
+    <
